@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>OSRS Gear Planner</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('/images/background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white for readability */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 300px; /* Wider boxes */
+            height: 40px; /* Taller boxes */
+            margin: 10px 0;
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 200px;
+            height: 40px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>Enter Your Gear Planning Details</h1>
+    <form method="post" action="/recommend">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="bossName">Boss Name:</label><br>
+        <input type="text" id="bossName" name="bossName" required><br><br>
+
+        <label for="budget">Budget (GP):</label><br>
+        <input type="number" id="budget" name="budget" min="0" required><br><br>
+
+        <button type="submit">Get Recommendation</button>
+    </form>
+
+    <!-- Display recommendation if it exists -->
+    <div th:if="${recommendation}">
+        <h3>Recommendation:</h3>
+        <p th:text="${recommendation}"></p>
+    </div>
+</div>
+</body>
+</html>
