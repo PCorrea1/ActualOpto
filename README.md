@@ -9,7 +9,7 @@
 
 ## Player's username? for stats ==> how will I pull stats? maybe some osrs api? https://secure.runescape.com/m=hiscore_oldschool/index_lite.ws?player={username}
 
-## PVM boss? will be used to lookup boss, stats, etc. (modified greedy algo) https://api.osrsbox.com/monsters
+## PVM boss? will be used to lookup boss, stats, etc. (modified greedy algo) https://runescape.wiki/w/RuneScape_Bestiary#Finding_monster_stats
 
 ## GP budget will be used with GE Price lookup. API? https://prices.runescape.wiki/api/v1/osrs
 
