@@ -12,11 +12,11 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class CsvToOracleMonsters extends AbstractScheduledService {
-    // Oracle connection details - REPLACE THESE
-    private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE"; // e.g., "jdbc:oracle:thin:@localhost:1521:XE"
+
+    private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
     private static final String USERNAME = "SYSTEM";
     private static final String PASSWORD = "pabs3019";
-    private static final String CSV_FILE = "monster-info/monsterdata.csv"; // Your CSV path
+    private static final String CSV_FILE = "monster-info/monsterdata.csv";
     private static final String TABLE_NAME = "MONSTER_STATS";
 
 
@@ -33,7 +33,6 @@ public class CsvToOracleMonsters extends AbstractScheduledService {
     @Override
     public  void runOneIteration() {
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            // Step 1: Read CSV headers
             CSVReader csvReader = new CSVReader(new FileReader(
                     getClass().getClassLoader().getResource(CSV_FILE).getFile()
             ));
@@ -43,12 +42,10 @@ public class CsvToOracleMonsters extends AbstractScheduledService {
                 headers[i] = headers[i].toUpperCase();
             }
 
-            // Step 3: Prepare insert statement
             String insertSql = "INSERT INTO " + TABLE_NAME + " (" + String.join(",", headers) + ") VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(insertSql);
             conn.setAutoCommit(false);
 
-            // Step 4: Stream CSV rows
             String[] row;
             int batchSize = 0;
             while ((row = csvReader.readNext()) != null) {
