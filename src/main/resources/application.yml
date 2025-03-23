@@ -4,3 +4,8 @@ spring:
     username: SYSTEM
     password: pabs3019
     driver-class-name: oracle.jdbc.OracleDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true

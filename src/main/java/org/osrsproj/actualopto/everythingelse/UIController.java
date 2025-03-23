@@ -1,6 +1,5 @@
-package org.osrsproj.actualopto.controllers;
+package org.osrsproj.actualopto.everythingelse;
 
-import org.osrsproj.actualopto.services.OptimalGear;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
